@@ -1,7 +1,5 @@
 import React from "react";
 import line from "../../../Images/Discount/Line 14.png";
-import { Carousel } from "3d-react-carousal";
-import { Crousel1 } from "../../Collaborating/Collaborating";
 
 function RainingDiscount() {
 	return (

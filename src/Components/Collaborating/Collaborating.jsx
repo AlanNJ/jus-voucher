@@ -10,15 +10,10 @@ import Paper from "@mui/material/Paper";
 import { Button } from "@mui/material";
 import Carousel_Cont from "../Home/Carousel/Carousel_Cont";
 // import Testimonial3dCarousel from "../Happy Clients/crousels";
-import { useEffect } from "react";
-import { Carousel } from "3d-react-carousal";
-import PlaceHolder from "../../Images/placehonderimg.png";
-import r1 from "./r1.png";
 
 const Collaborating = () => {
 	// const [spacing, setSpacing] = useState(4);
 
-   
 	// const jsx = `<Grid container spacing={${spacing}}>`;
 	return (
 		<>
@@ -166,7 +161,6 @@ const Collaborating = () => {
 					</div>
 				</div>
 			</div>
-
 		</>
 	);
 };

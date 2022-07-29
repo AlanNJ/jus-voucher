@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./discount.css";
 import line from "../../../Images/Discount/Line 14.png";
-import Hospital from "../../../Images/Discount/image 35.png";
-import opd from "../../../Images/Discount/image 34.png";
-import Sliders from "react-slick";
+
 import { Carousel } from "react-responsive-carousel";
-import Opd from "../../../Images/Gift/Opd.png";
-import gym from "../../../Images/Gift/GYM.png";
+
 import axiosInstance from "../../../Axios/axiosInstance";
 
 export const Discount = () => {
