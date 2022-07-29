@@ -1,0 +1,95 @@
+.Collaborating_head{
+    background: linear-gradient(
+        180.25deg,
+        rgba(252, 248, 248, 0.5) 12.57%,
+        rgba(2, 48, 71, 0.5) 68.37%
+      );
+}
+
+ .Services{
+  /* border: 2px solid black; */
+  margin-top: 3rem;
+ }
+.content-wrapper {
+   
+  
+    margin-top: 0rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:0 5rem;
+ 
+  }
+
+  .Quotation{
+    width: 100%;
+    padding-top: 3rem;
+    display: flex;
+    padding: 2rem;
+    justify-content: center;
+    gap: 5rem;
+
+  }
+
+  .Quotation_image{
+
+    width: 35%;
+    height: 100%;
+    /* border: 2px solid black; */
+
+  }
+  .Quotation_image img{
+    max-width: 100%;
+    height: auto;
+    /* border: 2px solid black; */
+
+  }
+
+  .Quotation_Form{
+    width: 40%;
+    margin-right: 3rem;
+   
+  }
+
+  @media only screen and (max-width:500px) {
+    .content-wrapper{
+      margin-top: 5rem;
+    }
+    .content-wrapper {
+      background: linear-gradient( 180.25deg, rgba(252, 248, 248, 0.5) 12.57%, rgba(2, 48, 71, 0.5) 68.37% );
+      margin-top: 0rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0rem 2rem;
+      /* border: 2px solid black; */
+  }
+    .Quotation{
+      width: 100%;
+      padding-top: 1rem;
+      flex-direction: column;
+  
+  
+    }
+    .Quotation_Form{
+      width: 85%;
+      
+      margin-top: 2rem;
+      /* border: 2px solid black; */
+     
+    }
+    .Quotation_image{
+      width: 85%;
+      
+     
+    }
+  
+    
+  }
+
+  @media only screen and (min-width:600px) and (max-width:1300px) {
+  .form_img {
+    max-width: 24rem;
+    height: 35rem;
+}
+  }

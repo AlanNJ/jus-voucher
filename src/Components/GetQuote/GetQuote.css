@@ -1,0 +1,32 @@
+.getquote{
+    background: #023047;
+     color: white;
+     font-family: "Inria Serif";
+     font-size: 2rem;
+     font-weight: 700;
+     width: 20%;
+     height: auto;
+     padding: 1rem;
+     position: fixed;
+     right: -8.2rem;
+     z-index: 999;
+     top: 30rem;
+     transform:rotate(270deg);
+     border-top-right-radius: 1rem;
+     border-top-left-radius: 1rem;
+}
+@media only  screen and (max-width:780px)
+{
+    .getquote{
+        right: -3.5rem;
+    }
+}
+
+@media only  screen and (max-width:450px)
+{
+    .getquote{
+        right: -3rem;
+        width: 30%;
+        font-size: 1.5rem;
+    }
+}

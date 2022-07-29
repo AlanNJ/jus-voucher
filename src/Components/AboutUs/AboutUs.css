@@ -1,0 +1,191 @@
+
+.aboutus{
+    margin-top: 10rem;
+}
+.text {
+    display: flex;
+}
+.about_img{
+      border: 2px solid black;
+      width: 12rem;
+}
+
+.color-line {
+    width: 9.125rem;
+    height: .688rem;
+    background: #F36E27;
+    border-radius: 1.25rem;
+}
+
+.heading-1 {
+    width: 16.875rem;
+    height: 3.688rem;
+    font-family: 'Inria Serif';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2.5rem;
+    line-height: 3rem;
+    /* text-align: center; */
+    color: #000000;
+}
+
+.para-1 {
+    width: 23.438rem;
+    height: 2.688rem;
+    font-family: 'Inria Serif';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.563rem;
+    line-height: 1.875rem;
+    color: #000000;
+}
+
+.para-2 {
+    
+    width: 40.563rem;
+    height: 3.75rem;
+    font-family: 'Inria Serif';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    color: #000000;
+}
+
+.parent{
+    display: flex;
+    padding-left: 2rem;
+    padding-bottom: 1rem;
+  
+    
+}
+.child-one ,.child-2{
+    padding-left: 2rem;
+   
+}
+
+
+.vision-para {
+
+    width: 51.125rem;
+    height: 7.125rem;
+    font-family: 'Inria Serif';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    color: #000000;
+}
+
+.smart-1 {
+
+    width: 36rem;
+    height: 3.688rem;
+    font-family: 'Inria Serif';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2.5rem;
+    line-height: 3rem;
+    color: #000000;
+}
+
+.card-1,.card-2,.card-3,.card-4,.card-5,.card-6 {
+
+
+    width: 24.438rem;
+    height: 13.688rem;
+    position: absolute;
+    font-family: 'Inria Serif';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.875rem;
+    line-height: 3.75rem;
+    text-align: center;
+    color: #FFFFFF;
+
+
+}
+
+
+.card-white {
+
+    width: 821px;
+    height: 219px;
+    margin-left: 31%;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.paragraph {
+
+
+    width: 40.563rem;
+    height: 8.938rem;
+    padding-left: 10%;
+    padding-top: 2%;
+    font-family: 'Inria Serif';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    color: #000000;
+}
+
+
+
+
+.icon-one{
+    transform: rotate(90deg);
+    font-size: 2rem;
+    position: relative;
+    top: 5rem;
+    right: .3rem;
+    color: #EC5656;
+}
+
+.icon-two{
+    transform: rotate(90deg);
+    font-size: 2rem;
+    position: relative;
+    top: 5rem;
+    right: .3rem;
+    color:  #023047;
+}
+
+
+.icon-three{
+    transform: rotate(90deg);
+    font-size: 2rem;
+    position: relative;
+    top: 5rem;
+    right: .3rem;
+    color: #F07E7E;
+}
+
+.icon-four{
+    transform: rotate(90deg);
+    font-size: 2rem;
+    position: relative;
+    top: 5rem;
+    right: .3rem;
+    color: #446677;
+}
+
+.icon-five{
+    transform: rotate(90deg);
+    font-size: 2rem;
+    position: relative;
+    top: 5rem;
+    right: .3rem;
+    color:  #EC5656;
+}
+
+.icon-six{
+    transform: rotate(90deg);
+    font-size: 2rem;
+    position: relative;
+    top: 5rem;
+    right: .3rem;
+    color:  #023047;
+} 
+

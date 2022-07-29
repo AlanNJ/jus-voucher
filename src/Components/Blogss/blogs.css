@@ -1,0 +1,15 @@
+.btn-wrap{
+    display: flex;
+    justify-content: center;
+}
+.btn-wrap h1{
+    background: #023047;
+text-align: center;
+text-decoration: none;
+color: #fff;
+padding: 0.8rem 2rem;
+margin: 0 0.5rem;
+font-weight: 600;
+border-radius: 8px;
+cursor: pointer;
+}

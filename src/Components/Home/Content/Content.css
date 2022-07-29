@@ -1,0 +1,26 @@
+.content-wrapper {
+  background: linear-gradient(
+    180.25deg,
+    rgba(252, 248, 248, 0.5) 12.57%,
+    rgba(2, 48, 71, 0.5) 68.37%
+  );
+
+  margin-top: 0rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 2rem 5rem;
+  /* border: 2px solid black; */
+}
+/* .content-wrapper p {
+  font-family: "Inria Serif";
+  font-style: normal;
+  font-size: 1.3rem;
+  text-align: left;
+  margin-top: 1rem;
+ font-weight: 700;
+  color: #000000;
+  width:100%;
+  border: 2px solid white;
+} */

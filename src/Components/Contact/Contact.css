@@ -1,0 +1,261 @@
+.Contact-Us-Wrapper {
+  margin-top: 5rem;
+  display: flex;
+  /* border: 1px solid red; */
+  flex-direction: row;
+  justify-content: space-between;
+  overflow-x: hidden;
+  padding-left: 8rem;
+}
+.Contact-us-text-wrapper{
+  /* border: 2px solid black; */
+  width: 50%;
+  text-align: left;
+}
+.Contact-us-text-wrapper p {
+  font-family: "Inria Serif";
+  font-style: normal;
+  font-size: 2.3rem;
+  display: flex;
+  color: #000000;
+}
+.Contact-us-text-wrapper .img-wrapper {
+  margin-top: -2.2rem;
+  display: flex;
+}
+.Text-wrapper p {
+  font-family: "Inria Serif";
+  font-style: normal;
+  font-size: 1.3rem;
+  text-align: left;
+  color: #000000;
+  font-weight: 400;
+}
+.Form-container {
+  
+  /* border: 2px solid black; */
+  width: 50%;
+  text-align: left;
+ 
+
+  
+}
+form{
+ 
+}
+.c_input{
+  width: 30%;
+   border: none;
+   outline: none;
+  border-bottom: 3px solid #F36E27;
+  padding: .9rem 0;
+}
+.c_input1{
+  width: 30%;
+   border: none;
+   outline: none;
+  border-bottom: 3px solid #F36E27;
+  margin-left: 3rem;
+  padding: .9rem 0;
+}
+.c_input2{
+  width: 66.4%;
+  border: none;
+  outline: none;
+ border-bottom: 3px solid #F36E27;
+ padding: .9rem 0;
+ margin-top: 2rem;
+}
+.c_textarea{
+  width: 66.4%;
+  border: none;
+  outline: none;
+ border-bottom: 3px solid #F36E27;
+ padding: .9rem 0;
+ margin-top: 2rem;
+}
+
+::placeholder {
+  font-size: 1.3rem;
+  font-family: "Inria Serif";
+}
+.orange1{
+
+  background: #F36E27;
+  width: 10%;
+  height: 100vh;
+}
+.info{
+  width: 25%;
+  height:auto ;
+  background: #023047;
+  position: absolute;
+  right: 3rem;
+  top: 10rem;
+  border-radius: .5rem;
+  padding: 2rem;
+
+}
+
+.info1{
+  width: 25%;
+  height:auto ;
+  background: #023047;
+ 
+  right: 3rem;
+  top: 10rem;
+  border-radius: .5rem;
+  padding: 2rem;
+  display: none;
+}
+.info_head{
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 400;
+  font-family: "Inria Serif";
+  text-align: left;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+.link_div{
+  /* border: 2px solid white; */
+  text-align: left;
+  /* height: 100%; */
+}
+.link_div1{
+  margin-bottom: 1.5rem;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  /* border: 2px solid white; */
+}
+.info a{
+  color: white;
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: 400;
+  font-family: "Inria Serif";
+  /* border: 2px solid white; */
+  text-align: left;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  /* margin-top: 2rem; */
+  
+}
+.info a img{
+  width: 1rem;
+  margin-right: 1rem;
+}
+
+.info1 a{
+  color: white;
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: 400;
+  font-family: "Inria Serif";
+  /* border: 2px solid white; */
+  text-align: left;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  /* margin-top: 2rem; */
+  
+}
+.info1 a img{
+  width: 1rem;
+  margin-right: 1rem;
+}
+.map iframe{
+  width: 100%;
+  
+  margin-top: 1rem;
+  border-radius: .5rem;
+}
+
+@media only  screen and (max-width:830px)
+{
+  .Contact-Us-Wrapper{
+    padding-left: 3rem;
+  }
+
+  .info{
+    right: 0rem;
+    top: 8rem;
+    width: 35%;
+  }
+  .orange1{
+    height: 70vh;
+    width: 15%;
+  }
+
+  .c_input,.c_input1{
+    width: 40%;
+  }
+
+  .c_input2{
+    width: 95%;
+  }
+
+  .c_textarea{
+    width: 95%;
+  }
+}
+@media only  screen and (max-width:450px)
+{
+  .Contact-us-text-wrapper p{
+    font-size: 2.1rem;
+  }
+
+  .Text-wrapper p{
+    font-size: 1.1rem;
+  }
+  .img-wrapper{
+    padding-top: .5rem;
+    height: .3rem;
+    
+    /* border: 2px solid black; */
+  }
+  .img-wrapper img{
+    width: 40%;
+  }
+  .orange1{
+    display: none;
+  }
+  .Contact-Us-Wrapper{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0rem;
+    margin-top: 3rem;
+  }
+
+  .Contact-us-text-wrapper{
+    width: 90%;
+    padding-left: 1rem;
+    
+  }
+
+  .info{
+    
+    width: 80%;
+    position: relative;
+    display: none;
+  }
+
+  .info1{
+    
+    width: 75%;
+    display: block;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .info1 a{
+    font-size: 1.1rem;
+  }
+}
+
+
+
+

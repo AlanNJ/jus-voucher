@@ -1,0 +1,77 @@
+.Health_wrapper {
+
+    margin: 0 2rem;
+    margin-top: 2rem;
+    /* border: 2px solid black; */
+}
+.health_para{
+    padding-left:2rem;
+    /* border: 2px solid black; */
+    width: 95%;
+    /* margin-right: 2rem; */
+}
+
+
+
+
+
+.head-plus {
+    display: flex;
+    justify-content: center;
+
+}
+
+.btn {
+    width: 20.75rem;
+    height: 4rem;
+    background: #023047;
+    border-radius: 6.25rem;
+
+
+}
+
+.text-head {
+    width: 20.75rem;
+    /* height: 4rem; */
+    position: relative;
+    top: 1rem;
+    left: 3rem;
+    font-family: 'Inria Serif';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+    color: #FFFFFF;
+}
+
+.line-1 {
+
+    width: 17.5rem;
+    height: 1px;
+    border: 0;
+    background: #737373;
+    margin-top: 2rem;
+    margin-right: 2rem;
+
+}
+
+.line-2 {
+    width: 17.5rem;
+    height: 1px;
+    border: 0;
+    background: #737373;
+    margin-top: 2rem;
+    margin-left: 2rem;
+}
+
+.Text-item {
+
+    justify-content: center;
+    max-width: 59rem;
+    font-family: 'Inria Serif';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: #000000;
+}

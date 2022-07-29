@@ -1,0 +1,197 @@
+.testimonialclient_container{
+    background: linear-gradient(180deg, #023047 0%, rgba(35, 31, 32, 0) 198.21%);
+    padding: 4%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+}
+.testimonial{
+    width: 40%;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+    /* border: 2px solid white; */
+}
+.client_head{
+    font-family: "Inria Serif";
+    font-size: 2.8rem;
+    font-weight: 400;
+    color: white;
+    /* border: 2px solid white; */
+    margin-top: 0;
+}
+.client_para{
+    color: white;
+    width: 95%;
+    padding: .5rem;
+    /* border: 2px solid white; */
+}
+
+.client_input{
+    width: 95%;
+    background: transparent;
+    height: 2.5rem;
+    outline: none;
+    border: .1rem solid white;
+    border-radius: .5rem;
+    color: white;
+    padding: .5rem;
+    
+
+}
+.client_textarea{
+    width: 95%;
+    background: transparent;
+    outline: none;
+    border: .1rem solid white;
+    border-radius: .5rem;
+    color: white;
+    margin-top: 1rem;
+    padding: .5rem;
+}
+.ex_button{
+    width: 30%;
+    height: 2rem;
+    float: left;
+    margin-left: .4rem;
+    margin-top: 1rem;
+    background: #FA7D29;
+    font-size: .9rem;
+    border: none;
+    color: white;
+    border-radius: .2rem;
+    font-weight: 600;
+    font-family: "Inria Serif";
+
+}
+.clientcarousel{
+    width:100%;
+    
+    /* border: 2px solid black; */
+    background: #74002E;
+    padding: 1rem;
+    border-radius: .2rem;
+    
+
+}
+.head3{
+     color: white;
+     font-size: 1.25rem;
+     font-weight: 500;
+     width: 60%;
+     /* border: 2px solid white; */
+     margin-top: 0rem;
+     margin-bottom: .2rem;
+     
+}
+.head4{
+    color: white;
+     font-size: .9rem;
+     font-weight: 500;
+     width: 60%;
+     /* border: 2px solid white; */
+     margin-top: 0rem;
+}
+.img_head2{
+    width: 50%;
+}
+.carouselpara{
+    color: white;
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 1.05rem;
+    line-height: 1.3rem;
+}
+.client_img{
+    width: 4rem;
+    margin-left: 0;
+    margin-top: 0rem;
+    /* position: absolute;
+    left: 46rem; */
+    
+}
+.img_head{
+    display: flex;
+    flex-direction: row;
+}
+.img_head1{
+    /* border: 2px solid white; */
+    width: 12%;
+}
+.carousel_div4 {
+    /* border: 2px solid blanchedalmond; */
+    width: 50%;
+    /* height: 20rem; */
+    margin-top: .9rem;
+    display: flex;
+    align-items: center;
+  
+    
+    
+  }
+  .car_img5{
+    width: 100%;
+  }
+
+  @media only  screen and (max-width:830px)
+  {
+    .testimonialclient_container{
+      flex-direction: column;  
+      justify-content: center;
+      align-items: center;
+    }
+    .testimonial{
+        width: 90%;
+        
+    }
+
+    .carousel_div4{
+        width: 90%;
+    }
+  }
+
+  @media only  screen and (max-width:450px)
+  {
+    .client_head{
+        font-size: 2.4rem;
+    }
+
+    .ex_button{
+        width: 45%;
+    }
+
+    .head3{
+        font-size: 1rem;
+        width: 100%;
+    }
+    .head4{
+        font-size: .8rem; 
+        width: 100%;
+    }
+    .carouselpara{
+        font-size: .9rem;
+    }
+    .carousel_div4{
+        width: 90%;
+        
+    }
+    .clientcarousel{
+        width: 75%;
+    }
+  }
+  @media only  screen and (max-width:380px)
+  {
+      .clientcarousel{
+          width: 68%;
+      }
+  }
+
+  @media only  screen and (max-width:370px)
+{
+    .clientcarousel{
+        width: 66%;
+    }
+}
