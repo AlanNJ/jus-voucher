@@ -1,10 +1,18 @@
 import React, { useState } from "react";
 import logo from "../../../Images/Navbar/Logo.png";
 import "./Navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import FeatherIcon from "feather-icons-react";
 const Navbar = () => {
+	const navigate = useNavigate();
 	const [isMobile, setIsMobile] = useState(false);
+	const user = JSON.parse(localStorage.getItem("User"));
+	const firstLetter = user && user.email[0];
+	console.log(firstLetter);
+	const logOutUser = () => {
+		localStorage.removeItem("User");
+		window.location.reload();
+	};
 	return (
 		<div className="navbar">
 			<div className="image">
@@ -34,9 +42,27 @@ const Navbar = () => {
 						<Link to="/contact">
 							<li>Contact Us</li>
 						</Link>
-						<Link to="/login">
-							<li>Login</li>
-						</Link>
+						{user ? (
+							<>
+								<div class="dropdown">
+									<button class="dropbtn">{firstLetter}</button>
+									<div class="dropdown-content">
+										{user && user.approved === 1 && (
+											<a href="#" onClick={() => navigate("/admin-panel")}>
+												Admin Panel
+											</a>
+										)}
+										<a href="#" onClick={() => logOutUser()}>
+											LogOut
+										</a>
+									</div>
+								</div>
+							</>
+						) : (
+							<Link to="/login">
+								<li>Login</li>
+							</Link>
+						)}
 					</ul>
 				</div>
 			</div>

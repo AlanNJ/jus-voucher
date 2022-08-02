@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import axiosInstance from "../../../Axios/axiosInstance";
 import { toast } from "react-toastify";
 import "./home.css";
 
 function Home() {
+	const navigate = useNavigate();
 	const location = useState();
 	useEffect(() => {
 		viewPost();
@@ -43,33 +44,44 @@ function Home() {
 					<h1 className="App__tittle"></h1>
 
 					{ispost.map((item, index) => (
-						<div className="flex">
-							<div className="post__list" key={index}>
-								<h2>{item.title}</h2>
+						<div className="blog-comment">
+							{" "}
+							<div className="flex">
+								<div className="post__list" key={index}>
+									<h2>{item.title}</h2>
 
-								<div
-									className="post__description"
-									dangerouslySetInnerHTML={{ __html: item.description }}
-								/>
-								<div
-									className="post__description"
-									dangerouslySetInnerHTML={{ __html: item.information }}
-								/>
+									<div
+										className="post__description"
+										dangerouslySetInnerHTML={{ __html: item.description }}
+									/>
+									<div
+										className="post__description"
+										dangerouslySetInnerHTML={{ __html: item.information }}
+									/>
+								</div>
+								<Link
+									to={`/admin-panel/edit-post/${item.id}`}
+									className="btnn btn__theme"
+								>
+									{" "}
+									Edit{" "}
+								</Link>
+								<button
+									className="btnn btn__theme"
+									style={{ marginLeft: "1rem" }}
+									onClick={() => deleteBlog(item.id)}
+								>
+									Delete
+								</button>
+
+								<button
+									onClick={() => navigate(`/admin-panel/comments/${item.id}`)}
+									className="btnn btn__theme"
+									style={{ marginLeft: "1rem" }}
+								>
+									Comments
+								</button>
 							</div>
-							<Link
-								to={`/admin-panel/edit-post/${item.id}`}
-								className="btnn btn__theme"
-							>
-								{" "}
-								Edit{" "}
-							</Link>
-							<button
-								className="btnn btn__theme"
-								style={{ marginLeft: "1rem" }}
-								onClick={() => deleteBlog(item.id)}
-							>
-								Delete
-							</button>
 						</div>
 					))}
 				</div>

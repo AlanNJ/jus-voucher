@@ -32,7 +32,9 @@ export default function AdminLayout() {
 				<header className="admin-header">
 					<h3 className="header-title">Welcome to: Jus Voucher</h3>
 					<ul className="hamburger" ref={hamRef} onClick={handleHamburgerClick}>
-						<span></span>
+						<li className="layer"></li>
+						<li className="layer"></li>
+						<li className="layer"></li>
 					</ul>
 					<Link to="/" className="header-logo-wrapper">
 						<img src={logo} className="header-logo" alt="" />

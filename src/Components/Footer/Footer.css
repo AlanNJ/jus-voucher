@@ -168,7 +168,8 @@
     /* border: 2px solid black; */
 }
 .map1 iframe{
-    width: 100%;
+    width: 100% !important;
+    height: 100%;
     
     /* margin-top: 2rem; */
     border-radius: .5rem;

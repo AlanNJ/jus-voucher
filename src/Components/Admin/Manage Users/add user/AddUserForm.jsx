@@ -14,6 +14,9 @@ export default function AddUserForm({ update }) {
 				.then((res) => {
 					console.log(res);
 					toast.success(res.data.message);
+					setTimeout(() => {
+						window.location.reload();
+					});
 				})
 				.catch((err) => {
 					console.log(err);
@@ -32,6 +35,7 @@ export default function AddUserForm({ update }) {
 			<label htmlFor="email">Email</label>
 			<input
 				type="email"
+				for="email"
 				name="email"
 				onChange={handleFilling}
 				className="add-user-input"

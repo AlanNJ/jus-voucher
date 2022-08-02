@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { NavLink, useParams } from "react-router-dom";
@@ -22,6 +23,8 @@ export default function Testimonials() {
 	const [formData, setFormData] = useState({});
 	const [textTestimonials, setTextTestimonials] = useState([]);
 	const [videoUrl, setVideoUrl] = useState("");
+	const [update, setUpdate] = useState(false);
+	const [updateID, setUpdateID] = useState();
 
 	useEffect(() => {
 		axiosInstance
@@ -41,7 +44,10 @@ export default function Testimonials() {
 			.then((res) => {
 				if (res.data.success) {
 					toast.success("Uploaded successfully");
-					setFormData({ name: "", role: "", content: "" });
+					setFormData({});
+					setTimeout(() => {
+						window.location.reload();
+					}, 1500);
 				} else {
 					toast.error("Something went wrong!");
 				}
@@ -64,6 +70,9 @@ export default function Testimonials() {
 					.delete(`/products/delete-testimonial-item/${id}`)
 					.then((res) => {
 						toast.success("Item deleted Successfully");
+						setTimeout(() => {
+							window.location.reload();
+						}, 1500);
 					})
 					.catch((err) => {
 						console.log(err);
@@ -78,11 +87,13 @@ export default function Testimonials() {
 			.get(`/products/get-single-testimonial-items/${id}`)
 			.then((res) => {
 				console.log(res.data.item);
+				setUpdate(true);
 				setFormData({
 					name: res.data.item.name,
 					designation: res.data.item.designation,
 					testimonial: res.data.item.testimonial,
 				});
+				setUpdateID(id);
 			})
 			.catch((err) => console.log(err));
 		/*
@@ -101,6 +112,26 @@ export default function Testimonials() {
 		event.preventDefault();
 		AdminPageManager.uploadForm("testimonials", 3, { url: videoUrl });
 	};
+	const finalUpdate = (e) => {
+		e.preventDefault();
+		if (!formData.name || !formData.designation || !formData.testimonial) {
+			toast.error("Please fill all the fields");
+		} else {
+			axiosInstance
+				.put(`/products/update-testimonial-item/${updateID}`, formData)
+				.then((res) => {
+					if (res.data) {
+						toast.success("Item updated successfully");
+						setTimeout(() => {
+							window.location.reload();
+						}, []);
+					}
+				})
+				.catch((err) => {
+					toast.error("Something went wrong");
+				});
+		}
+	};
 
 	return (
 		<main className="testimonials-wrapper">
@@ -111,17 +142,11 @@ export default function Testimonials() {
 				>
 					Text
 				</NavLink>
-				<NavLink
-					to="/admin-panel/testimonials/video"
-					className="btn-testimonial"
-				>
-					Video
-				</NavLink>
 			</div>
 			<div className="home-page-manager">
 				{section === "text" ? (
 					<>
-						<form className="home-page-form" onSubmit={textFormSubmit}>
+						<form className="home-page-form">
 							<div className="two-columns-wrapper">
 								<div className="input-wrapper">
 									<label htmlFor="">Name</label>
@@ -159,7 +184,18 @@ export default function Testimonials() {
 									></textarea>
 								</div>
 							</div>
-							<button className="btn-submit">Upload</button>
+							{update ? (
+								<button className="btn-submit" onClick={(e) => finalUpdate(e)}>
+									update
+								</button>
+							) : (
+								<button
+									className="btn-submit"
+									onClick={(e) => textFormSubmit(e)}
+								>
+									Upload
+								</button>
+							)}
 						</form>
 						<div className="table-wrapper">
 							<PrimaryTable
@@ -168,6 +204,7 @@ export default function Testimonials() {
 								deleteCol={true}
 								deleteRow={deleteTextTestimonials}
 								updateRow={updateTextTestimonials}
+								update={true}
 							/>
 						</div>
 					</>

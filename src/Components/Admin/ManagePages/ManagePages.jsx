@@ -5,7 +5,7 @@ import "./ManagePages.css";
 let sectionCount = {
 	home: {
 		title: "home",
-		count: 6,
+		count: 8,
 		names: [
 			"Banners",
 			"Discounts",
@@ -13,6 +13,8 @@ let sectionCount = {
 			"our-Clients",
 			"Trending-Offers",
 			"Client-Testimonials",
+			"Raining-Discounts",
+			"Happy-Clients",
 		],
 	},
 	AboutUs: {

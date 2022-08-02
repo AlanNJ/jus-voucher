@@ -2,3 +2,11 @@
     display: flex;
     justify-content: flex-start;
 }
+.blog-comment{
+    display: flex;
+    flex-direction: column;
+}
+.comment-container{
+    width: 35vw;
+    margin:2.5rem 0;
+}

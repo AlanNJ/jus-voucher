@@ -1,0 +1,27 @@
+.new-blog-container{
+    margin-top: 4rem;
+   
+}
+.new-blog-container h1{
+    text-align: start;
+    margin-bottom: 3rem;
+}
+.new-blog-container p{
+ 
+}
+.new-blog-container img{
+    max-width: 50%;
+   
+}
+.new-blog-container img{
+ float: left;
+ margin-right: 4rem;
+ margin-bottom: 3rem;
+}
+.new-blog-container p{
+    grid-area: content;
+    line-height: 1.7;
+    font-weight: 400;
+
+
+}

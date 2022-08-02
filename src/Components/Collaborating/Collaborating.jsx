@@ -5,16 +5,55 @@ import "./Collaborating_page.css";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import "../Happy Clients/style.css";
-
+import { useEffect } from "react";
 import Paper from "@mui/material/Paper";
 import { Button } from "@mui/material";
 import Carousel_Cont from "../Home/Carousel/Carousel_Cont";
+import { Carousel } from "3d-react-carousal";
+import axiosInstance from "../../Axios/axiosInstance";
+import img1 from "../../Images/raining/Rectangle 11.svg";
+import img2 from "../../Images/raining/Rectangle 12.svg";
+import img3 from "../../Images/raining/Rectangle 13.svg";
+import img4 from "../../Images/raining/Rectangle 14.svg";
+import img5 from "../../Images/raining/Rectangle 15.svg";
+import { toast } from "react-toastify";
+
 // import Testimonial3dCarousel from "../Happy Clients/crousels";
 
 const Collaborating = () => {
 	// const [spacing, setSpacing] = useState(4);
 
 	// const jsx = `<Grid container spacing={${spacing}}>`;
+	//
+	useEffect(() => {
+		getDiscounts();
+	}, []);
+	const [firstName, setFirstName] = useState("");
+
+	const [email, setEmail] = useState("");
+	const [message, setMessage] = useState("");
+	const [phoneNo, setPhoneNo] = useState("");
+	const submitForm = async (e) => {
+		e.preventDefault();
+		const data = { firstName, email, message, phoneNo };
+		if (!firstName || !email || !message || !phoneNo) {
+			toast.error("Please fill all the fields");
+		} else {
+			axiosInstance.post("/auth/send-message", data).then((res) => {
+				toast.success("Message Sent Successfully");
+				console.log(res.data);
+			});
+		}
+	};
+	const getDiscounts = () => {
+		axiosInstance.get("products/get-raining-items").then((res) => {
+			console.log(res);
+		});
+	};
+
+	const generator = () => {
+		const array = [];
+	};
 	return (
 		<>
 			<Carousel_Cont />
@@ -62,7 +101,7 @@ const Collaborating = () => {
 						<img src={line} />
 					</div>
 				</div>
-				{/* <Crousel1 /> */}
+				<Crousel2 />
 				<div className="Services">
 					<div className="head_container">
 						<div className="line">
@@ -121,19 +160,37 @@ const Collaborating = () => {
 						<p style={{ color: "#737373" }} variant="h5">
 							Name
 						</p>
-						<TextField variant="standard" color="warning" focused fullWidth />
+						<TextField
+							variant="standard"
+							color="warning"
+							focused
+							fullWidth
+							onChange={(e) => setFirstName(e.target.value)}
+						/>
 						<br />
 						<br />
 						<p style={{ color: "#737373" }} variant="h5">
 							Email
 						</p>
-						<TextField variant="standard" color="warning" focused fullWidth />
+						<TextField
+							onChange={(e) => setEmail(e.target.value)}
+							variant="standard"
+							color="warning"
+							focused
+							fullWidth
+						/>
 						<br />
 						<br />
 						<p style={{ color: "#737373" }} variant="h5">
 							Mobile Number
 						</p>
-						<TextField variant="standard" color="warning" focused fullWidth />
+						<TextField
+							onChange={(e) => setPhoneNo(e.target.value)}
+							variant="standard"
+							color="warning"
+							focused
+							fullWidth
+						/>
 						<br />
 						<br />
 
@@ -149,13 +206,18 @@ const Collaborating = () => {
 							multiline
 							rows={3}
 							fullWidth
+							onChange={(e) => setMessage(e.target.value)}
 						/>
 
 						<br />
 						<br />
 						<br />
 
-						<Button style={{ background: "#FA7D29" }} variant="contained">
+						<Button
+							onClick={submitForm}
+							style={{ background: "#FA7D29" }}
+							variant="contained"
+						>
 							Submit
 						</Button>
 					</div>
@@ -165,96 +227,238 @@ const Collaborating = () => {
 	);
 };
 
-// export const Crousel1 = () => {
-// 	useEffect(() => {
-// 		const interval = setInterval(() => {
-// 			const arrow = document.querySelectorAll(
-// 				"Testimonial3dCarousel .react-3d-carousel .slider-container .slider-right i"
-// 			);
-// 			console.log(arrow);
-// 		}, []);
-// 		return clearInterval(interval);
-// 	}, []);
-// 	let slides = [
-// 		<div className="Testimonial3dCarousel-Slide">
-// 			<div className="Mark">
-// 				<span className="span-comma">
-// 					<b>"</b>
-// 				</span>
-// 			</div>
+export const Crousel1 = () => {
+	const [arroww, setArroww] = useState();
+	const [item, setItems] = useState();
+	useEffect(() => {
+		/*
+		const interval = setInterval(() => {
+			const arrow = document.querySelectorAll(
+				"Testimonial3dCarousel .react-3d-carousel .slider-container .slider-right i"
+			);
+			setArroww(arrow);
+			console.log("hello");
+			console.log(arrow);
+			arrow.click();
+			simulateMouseClick(arrow);
+		}, 1000);
 
-// 			<div className="Testimonial-Slide-Content">
-// 				{/* <img src={r1} alt="" /> */}
-// 				<p>
-// 					The Ritz floor is the leader of floor installation and repair in the
-// 					country sed diam nonumy eirmod tempor invidunt ut labore and efficient
-// 					strategy.
-// 				</p>
-// 				<div className="Testimonial-Slide-Profile-Row">
-// 					<div className="Testimonials-Profile-Image">
-// 						<img src={PlaceHolder} alt="" />
-// 					</div>
-// 					<div className="Testimonials-Profile-Content-Col">
-// 						<h4 className="my-0">Akash Singh</h4>
-// 						<h5 className="my-0">UI/UX Designer</h5>
-// 					</div>
-// 				</div>
-// 			</div>
-// 		</div>,
-// 		<div className="Testimonial3dCarousel-Slide">
-// 			<div className="Mark">
-// 				<span className="span-comma">
-// 					<b>"</b>
-// 				</span>
-// 			</div>
-// 			<div className="Testimonial-Slide-Content">
-// 				<p>
-// 					The Ritz floor is the leader of floor installation and repair in the
-// 					country sed diam nonumy eirmod tempor invidunt ut labore and efficient
-// 					strategy.
-// 				</p>
-// 				<div className="Testimonial-Slide-Profile-Row">
-// 					<div className="Testimonials-Profile-Image">
-// 						<img src={PlaceHolder} alt="" />
-// 					</div>
-// 					<div className="Testimonials-Profile-Content-Col">
-// 						<h4 className="my-0">Akash Singh</h4>
-// 						<h5 className="my-0">UI/UX Designer</h5>
-// 					</div>
-// 				</div>
-// 			</div>
-// 		</div>,
-// 		<div className="Testimonial3dCarousel-Slide">
-// 			<div className="Mark">
-// 				<span className="span-comma">
-// 					<b>"</b>
-// 				</span>
-// 			</div>
-// 			<div className="Testimonial-Slide-Content">
-// 				<p>
-// 					The Ritz floor is the leader of floor installation and repair in the
-// 					country sed diam nonumy eirmod tempor invidunt ut labore and efficient
-// 					strategy.
-// 				</p>
-// 				<div className="Testimonial-Slide-Profile-Row">
-// 					<div className="Testimonials-Profile-Image">
-// 						<img src={PlaceHolder} alt="" />
-// 					</div>
-// 					<div className="Testimonials-Profile-Content-Col">
-// 						<h4 className="my-0">Akash Singh</h4>
-// 						<h5 className="my-0">UI/UX Designer</h5>
-// 					</div>
-// 				</div>
-// 			</div>
-// 		</div>,
-// 	];
-// 	return (
-// 		<div className="Testimonial3dCarousel-Container">
-// 			<div className="Testimonial3dCarousel">
-// 				<Carousel slides={slides} />
-// 			</div>
-// 		</div>
-// 	);
-// };
+		return clearInterval(interval);
+		*/
+		axiosInstance.get("products/get-raining-items").then((res) => {
+			console.log(res.data.item);
+			setItems(res.data.item);
+		});
+	}, []);
+	console.log(item);
+
+	let array = [];
+	item &&
+		item.forEach((item) => {
+			array.push(
+				<div className="Testimonial3dCarousel-Slide">
+					{<img src={"http://localhost:5000/RainingImages/" + item.img} />}
+				</div>
+			);
+		});
+	console.log(array);
+	/*
+	const arrow = document.querySelectorAll(
+		".Testimonial3dCarousel .react-3d-carousel .slider-container .slider-right div i"
+	);
+
+	async function simulateMouseClick(el) {
+		let opts = { view: window, bubbles: true, cancelable: true, buttons: 1 };
+		el.dispatchEvent(new MouseEvent("mousedown", opts));
+		await new Promise((r) => setTimeout(r, 50));
+		el.dispatchEvent(new MouseEvent("mouseup", opts));
+		el.dispatchEvent(new MouseEvent("click", opts));
+	}
+	simulateMouseClick(arrow);
+	*/
+	let slides = [
+		<div className="Testimonial3dCarousel-Slide">
+			{<img src={img1} alt="" />}
+		</div>,
+		<div className="Testimonial3dCarousel-Slide">
+			{<img src={img2} alt="" />}
+		</div>,
+		<div className="Testimonial3dCarousel-Slide">
+			{<img src={img3} alt="" />}
+		</div>,
+		<div className="Testimonial3dCarousel-Slide">
+			{<img src={img4} alt="" />}
+		</div>,
+		<div className="Testimonial3dCarousel-Slide">
+			{<img src={img5} alt="" />}
+		</div>,
+	];
+	return (
+		<div className="Testimonial3dCarousel-Container">
+			<div className="Testimonial3dCarousel">
+				<Carousel slides={array && array} />
+			</div>
+		</div>
+	);
+};
+export const Crousel2 = () => {
+	const [arroww, setArroww] = useState();
+	const [item, setItems] = useState();
+	const [slidess, setSlides] = useState([]);
+
+	useEffect(() => {
+		axiosInstance
+			.get("products/get-happyClients-items")
+			.then((res) => {
+				setItems(res.data.item);
+			})
+			.catch((err) => console.log(err));
+	}, []);
+	let array = [];
+	item &&
+		item.forEach((item) => {
+			array.push(
+				<div className="Testimonial3dCarousel-Slide">
+					<div className="Mark">
+						<span className="span-comma">
+							<b>"</b>
+						</span>
+					</div>
+
+					<div className="Testimonial-Slide-Content">
+						<p>{item.message}</p>
+						<div className="Testimonial-Slide-Profile-Row">
+							<div className="Testimonials-Profile-Content-Col">
+								<h4 className="my-0">{item.name}</h4>
+							</div>
+						</div>
+					</div>
+				</div>
+			);
+		});
+
+	console.log(slidess);
+	const helper = (item) => {
+		return (
+			<div className="Testimonial3dCarousel-Slide">
+				<div className="Mark">
+					<span className="span-comma">
+						<b>"</b>
+					</span>
+				</div>
+				<div className="Testimonial-Slide-Content">
+					{/* <img src={r1} alt="" /> */}
+					<p>
+						The Ritz floor is the leader of floor installation and repair in the
+						country sed diam nonumy eirmod tempor invidunt ut labore and
+						efficient strategy.
+					</p>
+					<div className="Testimonial-Slide-Profile-Row">
+						<div className="Testimonials-Profile-Image">
+							<img src={""} alt="" />
+						</div>
+						<div className="Testimonials-Profile-Content-Col">
+							<h4 className="my-0">Akash Singh</h4>
+							<h5 className="my-0">UI/UX Designer</h5>
+						</div>
+					</div>
+				</div>
+			</div>
+		);
+	};
+	/*
+	const helper = () => {
+		for (let i = 0; i <= item.length; i++) {
+			setSlides(() => (
+				<div className="Mark">
+					<span className="span-comma">
+						<b>"</b>
+					</span>
+				</div>
+			));
+		}
+	};
+	*/
+
+	let slides = [
+		<div className="Testimonial3dCarousel-Slide">
+			<div className="Mark">
+				<span className="span-comma">
+					<b>"</b>
+				</span>
+			</div>
+			<div className="Testimonial-Slide-Content">
+				{/* <img src={r1} alt="" /> */}
+				<p>
+					The Ritz floor is the leader of floor installation and repair in the
+					country sed diam nonumy eirmod tempor invidunt ut labore and efficient
+					strategy.
+				</p>
+				<div className="Testimonial-Slide-Profile-Row">
+					<div className="Testimonials-Profile-Image">
+						<img src={""} alt="" />
+					</div>
+					<div className="Testimonials-Profile-Content-Col">
+						<h4 className="my-0">Akash Singh</h4>
+						<h5 className="my-0">UI/UX Designer</h5>
+					</div>
+				</div>
+			</div>
+		</div>,
+		<div className="Testimonial3dCarousel-Slide">
+			<div className="Mark">
+				<span className="span-comma">
+					<b>"</b>
+				</span>
+			</div>
+			<div className="Testimonial-Slide-Content">
+				<p>
+					The Ritz floor is the leader of floor installation and repair in the
+					country sed diam nonumy eirmod tempor invidunt ut labore and efficient
+					strategy.
+				</p>
+				<div className="Testimonial-Slide-Profile-Row">
+					<div className="Testimonials-Profile-Image">
+						<img src={""} alt="" />
+					</div>
+					<div className="Testimonials-Profile-Content-Col">
+						<h4 className="my-0">Akash Singh</h4>
+						<h5 className="my-0">UI/UX Designer</h5>
+					</div>
+				</div>
+			</div>
+		</div>,
+		<div className="Testimonial3dCarousel-Slide">
+			<div className="Mark">
+				<span className="span-comma">
+					<b>"</b>
+				</span>
+			</div>
+			<div className="Testimonial-Slide-Content">
+				<p>
+					The Ritz floor is the leader of floor installation and repair in the
+					country sed diam nonumy eirmod tempor invidunt ut labore and efficient
+					strategy.
+				</p>
+				<div className="Testimonial-Slide-Profile-Row">
+					<div className="Testimonials-Profile-Image">
+						<img src={""} alt="" />
+					</div>
+					<div className="Testimonials-Profile-Content-Col">
+						<h4 className="my-0">Akash Singh</h4>
+						<h5 className="my-0">UI/UX Designer</h5>
+					</div>
+				</div>
+			</div>
+		</div>,
+	];
+	return (
+		<div className="Testimonial3dCarousel-Container">
+			<div className="Testimonial3dCarousel">
+				<Carousel slides={array && array} />
+			</div>
+		</div>
+	);
+};
 
 export default Collaborating;

@@ -25,8 +25,10 @@ let tableHeader6 = [
 	"name",
 	"Delete",
 	"Update",
+	"Action",
 ];
 let tableHeader7 = ["SiNo", "Image", "Title", "Delete", "Update"];
+let tableHeader8 = ["SiNo", "Image", "Name", "Message", "Delete", "Update"];
 const baseURL = "http://localhost:5000/api";
 
 const testimonials = {
@@ -112,6 +114,19 @@ export default function HomePageManager() {
 	const [sec6Image, setSec6Image] = useState(null);
 	const [sixthSectionData, setSixthSectionData] = useState([]);
 
+	const [sec7Image, setSec7Image] = useState(null);
+	const [seventhSection, setSeventhSection] = useState({
+		title: null,
+	});
+	const [seventhSectionData, setSeventhSectionData] = useState([]);
+
+	const [sec8Image, setSec8Image] = useState(null);
+	const [eightSection, setEightSection] = useState({
+		name: "",
+		message: "",
+	});
+	const [eightSectionData, setEightSectionData] = useState([]);
+
 	const [backendURL, setBackendURL] = useState("");
 	const [updateButoon, setUpdateButton] = useState(false);
 	const [updateId, setUpdateId] = useState();
@@ -134,6 +149,10 @@ export default function HomePageManager() {
 			getFifthSection();
 		} else if (section == 6) {
 			getSixthSection();
+		} else if (section == 7) {
+			getSeventhSection();
+		} else if (section == 8) {
+			getEightSection();
 		}
 	}, [section]);
 
@@ -203,7 +222,7 @@ export default function HomePageManager() {
 		setBackendURL(`http://localhost:5000/BannerImages/${data.data.item.img}`);
 
 		console.log(id);
-		setUpdateButton(true);
+		return backendURL;
 	};
 	const finalUpdate1 = (e, string) => {
 		e.preventDefault();
@@ -291,6 +310,7 @@ export default function HomePageManager() {
 		setSecondSection({ title: data.data.info });
 		setBackendURL(`http://localhost:5000/DiscountImages/${data.data.img}`);
 		setUpdateButton(true);
+		return backendURL;
 
 		console.log(id);
 	};
@@ -383,6 +403,7 @@ export default function HomePageManager() {
 			`http://localhost:5000/FreeGiftVouchersImages/${data.data.img}`
 		);
 		setUpdateButton(true);
+		return backendURL;
 	};
 	const finalUpdate3 = (e, string) => {
 		e.preventDefault();
@@ -471,8 +492,7 @@ export default function HomePageManager() {
 		console.log(data.data);
 		setFourthSection({ name: data.data.name, role: data.data.role });
 		setBackendURL(`http://localhost:5000/OurClientsImages/${data.data.img}`);
-
-		console.log(id);
+		return backendURL;
 	};
 	const finalUpdate4 = (e, string) => {
 		e.preventDefault();
@@ -566,6 +586,7 @@ export default function HomePageManager() {
 		setBackendURL(
 			`http://localhost:5000/TrendingOffersImages/${data.data.img}`
 		);
+		return backendURL;
 	};
 	const finalUpdate5 = (e, string) => {
 		e.preventDefault();
@@ -592,7 +613,7 @@ export default function HomePageManager() {
 		formData.append("email", sixthSection.email);
 		formData.append("message", sixthSection.message);
 		formData.append("role", sixthSection.role);
-		formData.append("approved", false);
+		formData.append("approved", 0);
 		formData.append("img", sec6Image);
 
 		formData.append("img", sec6Image);
@@ -626,7 +647,7 @@ export default function HomePageManager() {
 			.then((res) => {
 				console.log(res.data);
 
-				setSixthSectionData(res.data);
+				setSixthSectionData(res.data.item);
 			})
 			.catch((err) => {
 				toast.error("Something went wrong with fetching!");
@@ -669,8 +690,9 @@ export default function HomePageManager() {
 		setBackendURL(
 			`http://localhost:5000/ClientTestimonialImages/${data.data.img}`
 		);
+		return backendURL;
 	};
-	console.log(firstSection);
+
 	const finalUpdate6 = (e, string) => {
 		e.preventDefault();
 		let formData = new FormData();
@@ -681,6 +703,191 @@ export default function HomePageManager() {
 		formData.append("role", sixthSection.role);
 		formData.append("message", sixthSection.message);
 		console.log([...formData]);
+		axiosInstance
+			.put(`products/${string}/${updateId}`, formData)
+			.then((res) => console.log(res));
+	};
+
+	//Seventh-section
+	const handleSeventhSection = (event) => {
+		event.preventDefault();
+		let formData = new FormData();
+		formData.append("title", seventhSection.title);
+
+		formData.append("img", sec7Image);
+
+		if (sec7Image && seventhSection) {
+			axiosInstance
+				.post(`/products/add-raining-items`, formData)
+				.then((res) => {
+					console.log(res);
+					if (res.data) {
+						toast.success("Added Successfully");
+						setSixthSection({ title: "", role: "", message: "", email: "" });
+						setSec6Image(null);
+						setTimeout(() => {
+							window.location.reload();
+						}, [1500]);
+					} else {
+						toast.error("Something went wrong!");
+					}
+				})
+				.catch((err) => {
+					toast.error("Something went wrong!");
+				});
+		} else {
+			toast.error("Please add a image!");
+		}
+	};
+
+	const getSeventhSection = () => {
+		axiosInstance
+			.get("/products/get-raining-items")
+			.then((res) => {
+				console.log(res.data);
+
+				setSeventhSectionData(res.data.item);
+			})
+			.catch((err) => {
+				toast.error("Something went wrong with fetching!");
+			});
+	};
+	const deleteSection7 = (id, index) => {
+		let isConfirmed = window.confirm("Are you sure to delete?");
+		console.log(id);
+		if (isConfirmed) {
+			axiosInstance
+				.delete("/products/delete-raining-item/" + id)
+				.then((res) => {
+					if (res.data) {
+						toast.success("Item deleted successfully");
+						window.location.reload();
+					} else {
+						toast.error("Something went wrong");
+					}
+				})
+				.catch((err) => {
+					toast.error("Something went wrong");
+				});
+		}
+	};
+	const updateSection7 = async (id, index) => {
+		setUpdateButton(true);
+		setUpdateId(id);
+		const data = await axios.get(
+			`http://localhost:5000/api/products/get-single-raining-items/${id}`
+		);
+
+		setSeventhSection({ title: data.data.item.info });
+
+		setBackendURL(`http://localhost:5000/RainingImages/${data.data.img}`);
+		return backendURL;
+	};
+
+	const finalUpdate7 = (e, string) => {
+		e.preventDefault();
+		let formData = new FormData();
+
+		formData.append("img", sec7Image);
+		formData.append("title", seventhSection.title);
+
+		console.log([...formData]);
+		axiosInstance
+			.put(`products/${string}/${updateId}`, formData)
+			.then((res) => console.log(res));
+	};
+
+	//Eight-section
+	const handleEightSection = (event) => {
+		event.preventDefault();
+		let formData = new FormData();
+		formData.append("name", eightSection.name);
+
+		formData.append("message", eightSection.message);
+
+		formData.append("img", sec8Image);
+
+		if (sec8Image && eightSection) {
+			axiosInstance
+				.post(`/products/add-happyClients-items`, formData)
+				.then((res) => {
+					console.log(res);
+					if (res.data) {
+						toast.success("Added Successfully");
+						setEightSection({ title: "", message: "" });
+						setSec8Image(null);
+						setTimeout(() => {
+							window.location.reload();
+						}, [1500]);
+					} else {
+						toast.error("Something went wrong!");
+					}
+				})
+				.catch((err) => {
+					toast.error("Something went wrong!");
+				});
+		} else {
+			toast.error("Please add a image!");
+		}
+	};
+
+	const getEightSection = () => {
+		axiosInstance
+			.get("/products/get-happyClients-items")
+			.then((res) => {
+				console.log(res.data);
+
+				setEightSectionData(res.data.item);
+			})
+			.catch((err) => {
+				toast.error("Something went wrong with fetching!");
+			});
+	};
+	const deleteSection8 = (id, index) => {
+		let isConfirmed = window.confirm("Are you sure to delete?");
+		console.log(id);
+		if (isConfirmed) {
+			axiosInstance
+				.delete("/products/delete-HappyClients-item/" + id)
+				.then((res) => {
+					if (res.data) {
+						toast.success("Item deleted successfully");
+						window.location.reload();
+					} else {
+						toast.error("Something went wrong");
+					}
+				})
+				.catch((err) => {
+					toast.error("Something went wrong");
+				});
+		}
+	};
+	const updateSection8 = async (id, index) => {
+		setUpdateButton(true);
+		setUpdateId(id);
+		const data = await axios.get(
+			`http://localhost:5000/api/products/get-single-happyClients-items/${id}`
+		);
+		console.log(data.data.item);
+
+		setEightSection({
+			name: data.data.item.name,
+			message: data.data.item.message,
+		});
+
+		setBackendURL(`http://localhost:5000/HappyClientsImages/${data.data.img}`);
+		return backendURL;
+	};
+	console.log(firstSection);
+	const finalUpdate8 = (e, string) => {
+		e.preventDefault();
+		let formData = new FormData();
+
+		formData.append("img", sec8Image);
+		formData.append("name", eightSection.name);
+
+		formData.append("message", eightSection.message);
+
 		axiosInstance
 			.put(`products/${string}/${updateId}`, formData)
 			.then((res) => console.log(res));
@@ -698,7 +905,6 @@ export default function HomePageManager() {
 									name="HOME_IMAGE_1"
 									passImage={setSec1Image}
 									isFileAvailable={sec1Image ? true : false}
-									backendURL={backendURL}
 								/>
 							</div>
 							<div className="input-wrapper">
@@ -738,6 +944,7 @@ export default function HomePageManager() {
 							deleteCol={true}
 							deleteRow={deleteSection1}
 							updateRow={updateSection1}
+							backendURL={backendURL}
 						/>
 					</div>
 				</>
@@ -798,6 +1005,7 @@ export default function HomePageManager() {
 						deleteCol={true}
 						deleteRow={deleteSection2}
 						updateRow={updateSection2}
+						backendURL={backendURL}
 					/>
 				</>
 			) : section == 3 ? (
@@ -1110,6 +1318,147 @@ export default function HomePageManager() {
 							deleteCol={true}
 							deleteRow={deleteSection6}
 							updateRow={updateSection6}
+							testimonialUpdate={true}
+						/>
+					</div>
+				</>
+			) : section == 7 ? (
+				<>
+					<form className="home-page-form" onSubmit={handleSeventhSection}>
+						<div className="two-columns-wrapper">
+							<div className="input-wrapper">
+								<label htmlFor="">Image</label>
+								<ImageUploader
+									name="HOME_IMAGE_2"
+									passImage={setSec7Image}
+									isFileAvailable={sec7Image ? true : false}
+								/>
+							</div>
+
+							<div className="input-wrapper">
+								<label htmlFor="">info</label>
+								<input
+									type="text"
+									name="title"
+									value={seventhSection.title}
+									required
+									className="home-input"
+									onChange={(e) =>
+										setSeventhSection({
+											...seventhSection,
+											[e.target.name]: e.target.value,
+										})
+									}
+								/>
+							</div>
+
+							{/* <div className="input-wrapper">
+                      <label htmlFor="">Testimonial</label>
+                      <textarea name="content" required className='home-input' id="" cols="30" rows="10" onChange={e=> setThirdSection({...thirdSection,[e.target.name]: e.target.value})}></textarea>
+                    </div>
+                    <div className="input-wrapper">
+                      <label htmlFor="">Profile</label>
+                      <ImageUploader name="HOME_CAROUSEL" passImage={setSec3Image} isFileAvailable={sec3Image ? true : false}/>
+                    </div> */}
+						</div>
+						{!updateButoon ? (
+							<button className="btn-submit" onClick={handleSeventhSection}>
+								Upload
+							</button>
+						) : (
+							<button
+								className="btn-submit"
+								onClick={(e) => finalUpdate7(e, "update-raining-item")}
+							>
+								Update
+							</button>
+						)}
+					</form>
+					<div className="table-wrapper">
+						<PrimaryTable
+							tableBody={seventhSectionData}
+							tableHeader={tableHeader1}
+							deleteCol={true}
+							deleteRow={deleteSection7}
+							updateRow={updateSection7}
+						/>
+					</div>
+				</>
+			) : section == 8 ? (
+				<>
+					<form className="home-page-form" onSubmit={handleEightSection}>
+						<div className="two-columns-wrapper">
+							<div className="input-wrapper">
+								<label htmlFor="">Image</label>
+								<ImageUploader
+									name="HOME_IMAGE_2"
+									passImage={setSec8Image}
+									isFileAvailable={sec8Image ? true : false}
+								/>
+							</div>
+
+							<div className="input-wrapper">
+								<label htmlFor="">Name</label>
+								<input
+									type="text"
+									name="name"
+									value={eightSection.name}
+									required
+									className="home-input"
+									onChange={(e) =>
+										setEightSection({
+											...eightSection,
+											[e.target.name]: e.target.value,
+										})
+									}
+								/>
+							</div>
+							<div className="input-wrapper">
+								<label htmlFor="">message</label>
+								<input
+									type="text"
+									name="message"
+									value={eightSection.message}
+									required
+									className="home-input"
+									onChange={(e) =>
+										setEightSection({
+											...eightSection,
+											[e.target.name]: e.target.value,
+										})
+									}
+								/>
+							</div>
+
+							{/* <div className="input-wrapper">
+                      <label htmlFor="">Testimonial</label>
+                      <textarea name="content" required className='home-input' id="" cols="30" rows="10" onChange={e=> setThirdSection({...thirdSection,[e.target.name]: e.target.value})}></textarea>
+                    </div>
+                    <div className="input-wrapper">
+                      <label htmlFor="">Profile</label>
+                      <ImageUploader name="HOME_CAROUSEL" passImage={setSec3Image} isFileAvailable={sec3Image ? true : false}/>
+                    </div> */}
+						</div>
+						{!updateButoon ? (
+							<button className="btn-submit" onClick={handleEightSection}>
+								Upload
+							</button>
+						) : (
+							<button
+								className="btn-submit"
+								onClick={(e) => finalUpdate8(e, "update-happyClients-item")}
+							>
+								Update
+							</button>
+						)}
+					</form>
+					<div className="table-wrapper">
+						<PrimaryTable
+							tableBody={eightSectionData}
+							tableHeader={tableHeader8}
+							deleteCol={true}
+							deleteRow={deleteSection8}
+							updateRow={updateSection8}
 						/>
 					</div>
 				</>

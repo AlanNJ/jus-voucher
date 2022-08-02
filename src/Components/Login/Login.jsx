@@ -1,14 +1,43 @@
 import react, { useEffect, useState } from "react";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../Axios/axiosInstance";
+import { toast } from "react-toastify";
 
 export default function Login() {
 	const navigate = useNavigate();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const loginUser = (e) => {
-		if (email == "admin" && password == "admin") {
-			navigate("/admin-panel");
+		e.preventDefault();
+		const data = { email, password };
+
+		if (!email || !password) {
+			toast.error("please fill all the fields !!");
+		} else {
+			if (email !== "admin" && password !== "admin") {
+				axiosInstance
+					.post("auth/login-user", { email, password })
+					.then((res) => {
+						localStorage.setItem("User", JSON.stringify(res.data.exist));
+						toast.success("Logged in successfully");
+						setTimeout(() => {
+							navigate("/");
+						}, 1500);
+					})
+					.catch((err) => {
+						toast.error("Username or password didnt match");
+					});
+			}
+
+			if (email == "admin" && password == "admin") {
+				let fis = JSON.parse(localStorage.getItem("User"));
+				console.log(fis.approved);
+
+				if (fis.approved === 1) {
+					navigate("/admin-panel");
+				}
+			}
 		}
 	};
 	return (
@@ -39,7 +68,8 @@ export default function Login() {
 							<button onClick={(e) => loginUser(e)}>Login</button>{" "}
 						</div>
 						<p>
-							Don’t have an account? <span> Sign-up</span>{" "}
+							Don’t have an account?{" "}
+							<span onClick={() => navigate("/sign-up")}> Sign-up</span>{" "}
 						</p>
 					</form>
 				</div>

@@ -159,6 +159,7 @@ form.update__forms {
   box-shadow: 0 6px 15px 0 rgb(64 79 104 / 5%);
   padding: 37px;
   position: relative;
+  width: 100%;
 }
 .errors{
   color: #f44336;
@@ -181,8 +182,16 @@ form.update__forms {
 }
 @media (min-device-width:320px) and (max-device-width:480px){
   .post__list{
-    width:100%;
-    margin:1rem 0;
+   
+  border-bottom: 1px solid lavender;
+  padding-bottom: 17px;
+  width:90vw;
+  height:40vh;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  overflow:hidden;
+  margin:auto
+ 
+
   }
 }
 @media (min-device-width:480px) and (max-device-width:768px){
@@ -193,5 +202,17 @@ form.update__forms {
     left:50%;
     transform: translateX(-50%);
   }
+}
+iframe{
+  width: 700px;
+  height: 700px;
+}
+
+.ytp-cued-thumbnail-overlay-image {
+ 
+  background-position: start !important;
+}
+.Testimonial3dCarousel-Slide{
+  padding: 0 !important;
 }
 

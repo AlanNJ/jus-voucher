@@ -12,6 +12,13 @@
   z-index: 999;
 
 }
+.dropbtn{
+  height: 3rem !important;
+  width: 3rem !important;
+  border-radius: 50%;
+  font-size: 2rem;
+
+}
 
 .image {
   /* border: 2px solid white; */
@@ -46,10 +53,72 @@
   /* border: 2px solid beige; */
 
 }
+.profile-name{
+  height: 3rem !important;
+  width: 3rem !important;
+  border-radius: 50%;
+  background: rgba(255,255,255,1);
+  font-size: 2rem;
+  position: absolute;
+  right: 3%;
+  top:23%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.profile-name2{
+  height: 2rem !important;
+  width: 6rem !important;
+  border-radius: 5px;
+  
+  background: rgba(255,255,255,1);
+  font-size: 2rem;
+  position: absolute;
+  right: 1.7%;
+  top:67%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+.profile-name:hover{
+
+}
 
 .mobile-menu-icon {
   display: none;
 }
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: start;
+}
+
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #f1f1f1;}
 
 @media screen and (max-width:1033px) {
 

@@ -20,15 +20,25 @@ import Testimonial from "../Components/Admin/Testimonials/Testimonial";
 import ContactUs from "../Components/Admin/Contact Us/ContactUs";
 import Add from "../Components/Blogss/Editor/Add";
 import Editpost from "../Components/Blogss/Editor/Editpost";
+import { useNavigate } from "react-router-dom";
+import Comments from "../Components/Blogss/Comments";
 
-let userViewHeaders = ["SiNo", "Email", "Password", "Delete", "Update"];
+let userViewHeaders = [
+	"SiNo",
+	"Email",
+	"Password",
+	"Approved",
+	"Delete",
+	"Action",
+];
 
 export default function AdminNavigation({ setAdmin }) {
 	const [users, setUsers] = useState([]);
+	const navigate = useNavigate();
 	const location = useLocation();
 	const [updateUser, setUpdateUser] = useState(false);
 	const updateRow = (id) => {
-		setUpdateUser(true);
+		axiosInstance.put(`/auth/approve-admin/${id}`);
 	};
 
 	useEffect(() => {
@@ -39,6 +49,14 @@ export default function AdminNavigation({ setAdmin }) {
 			setAdmin(false);
 		}
 	}, [location]);
+	// useEffect(() => {
+	// 	let user = JSON.parse(localStorage.getItem("User"));
+	// 	if (user) {
+	// 		if (user.approved !== 1) {
+	// 			navigate("/");
+	// 		}
+	// 	}
+	// }, []);
 
 	const deleteUser = (id, index) => {
 		let isConfirmed = window.confirm("Are you sure to delete the user?");
@@ -54,6 +72,7 @@ export default function AdminNavigation({ setAdmin }) {
 				});
 		}
 	};
+	console.log(users[0]);
 
 	useLayoutEffect(() => {
 		axiosInstance
@@ -66,9 +85,7 @@ export default function AdminNavigation({ setAdmin }) {
 				console.log(err);
 			});
 	}, []);
-	const update = () => {
-		axiosInstance.put("/auth/update-user");
-	};
+	const update = () => {};
 	return (
 		<Routes>
 			<Route path="/admin-panel" element={<AdminLayout />}>
@@ -86,7 +103,7 @@ export default function AdminNavigation({ setAdmin }) {
 											tableBody={users}
 											deleteCol={true}
 											deleteRow={deleteUser}
-											updateRow={updateRow}
+											updateAdmin={true}
 										/>
 									) : (
 										"No users found"
@@ -105,9 +122,10 @@ export default function AdminNavigation({ setAdmin }) {
 					/>
 				</Route>
 				<Route path="blogs" element={<Blogs />}>
-					<Route exact_path="add-blog" element={<Add action="add" />} />
-					<Route exact_path="edit-blog/:id" element={<Editpost />} />
+					<Route path="add-blog" element={<Add action="add" />} />
+					<Route path="edit-blog/:id" element={<Editpost />} />
 				</Route>
+				<Route path="comments/:id" element={<Comments />} />
 
 				<Route path="edit-post/:id" element={<Add action="update" />} />
 

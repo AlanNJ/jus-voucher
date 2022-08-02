@@ -1,5 +1,6 @@
 import React from "react";
 import line from "../../../Images/Discount/Line 14.png";
+import { Crousel1 } from "../../Collaborating/Collaborating";
 
 function RainingDiscount() {
 	return (
@@ -13,7 +14,7 @@ function RainingDiscount() {
 					<img src={line} />
 				</div>
 			</div>
-			{/*<Crousel1 />*/}
+			<Crousel1 />
 		</div>
 	);
 }

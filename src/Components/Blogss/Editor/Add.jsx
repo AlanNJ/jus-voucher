@@ -6,6 +6,8 @@ import "./TextEditor.css";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import axiosInstance from "../../../Axios/axiosInstance";
+import ImageUploader from "../../Utils/ImageUploader/ImageUploader";
+import { toast } from "react-toastify";
 
 export function Add(props) {
 	const params = useParams();
@@ -14,6 +16,7 @@ export function Add(props) {
 		description: "",
 		information: "",
 	});
+	const [blogImage, setBlogImage] = useState();
 	useEffect(() => {
 		if (props.action == "update") {
 			axiosInstance.get(`blogs/get-single-blog/${params.id}`).then((res) => {
@@ -48,32 +51,49 @@ export function Add(props) {
 		try {
 			event.preventDefault();
 			event.persist();
-			if (userInfo.description.length < 5) {
-				setError("Required, Add description minimum length 50 characters");
-				return;
+			if (!blogImage || !userInfo.title || !userInfo.description) {
+				toast.error("Please fill all the fields");
+			} else {
+				let formData = new FormData();
+				formData.append("img", blogImage);
+				formData.append("title", userInfo.title);
+				formData.append("description", userInfo.description);
+				formData.append("information", userInfo.information);
+				console.log([...formData]);
+				axios
+					.post(`http://localhost:5000/api/blogs/add-blog`, formData)
+					.then((res) => {
+						if (res.data) {
+							toast.success("Blog added successfully");
+							setTimeout(() => {
+								window.location.reload();
+							}, 1500);
+						}
+					});
 			}
-			axios
-				.post(`http://localhost:5000/api/blogs/add-blog`, {
-					title: userInfo.title,
-					description: userInfo.description,
-					information: userInfo.information,
-				})
-				.then((res) => {
-					if (res.data.items === true) {
-						history.push("/admin-panel/blogs");
-					}
-				});
 		} catch (error) {
 			throw error;
 		}
 	};
+	console.log(userInfo);
 	const updateBlog = (e) => {
 		e.preventDefault();
-		axiosInstance
-			.put(`blogs/update-blog/${params.id}`, userInfo)
-			.then((res) => {
-				console.log(res);
-			});
+		if (!blogImage || !userInfo.title) {
+			toast.error("Please fill all the fields");
+		} else {
+			let formData = new FormData();
+			formData.append("img", blogImage);
+			formData.append("title", userInfo.title);
+			formData.append("description", userInfo.description);
+			formData.append("information", userInfo.information);
+			e.preventDefault();
+			axiosInstance
+				.put(`blogs/update-blog/${params.id}`, formData)
+				.then((res) => {
+					console.log(res);
+					toast.success("Blog updated successfully");
+				});
+		}
 	};
 
 	return (
@@ -98,6 +118,14 @@ export function Add(props) {
 										placeholder={userInfo.title}
 										required
 									/>
+									<div className="input-wrapper">
+										<label htmlFor="">Main Blog Banner Image</label>
+										<ImageUploader
+											name="HOME_IMAGE_1"
+											passImage={setBlogImage}
+											isFileAvailable={blogImage ? true : false}
+										/>
+									</div>
 								</div>
 								<div className="clearfix"></div>
 								<div className="form-group col-md-12 editor">
@@ -105,14 +133,12 @@ export function Add(props) {
 										{" "}
 										Description <span className="required"> * </span>{" "}
 									</label>
-									<EditorToolbar toolbarId={"t1"} />
+
 									<ReactQuill
 										theme="snow"
 										value={userInfo.description}
 										onChange={ondescription}
 										placeholder={"Write something awesome..."}
-										modules={modules("t1")}
-										formats={formats}
 									/>
 								</div>
 								<br />
@@ -121,14 +147,12 @@ export function Add(props) {
 										{" "}
 										Additional Information{" "}
 									</label>
-									<EditorToolbar toolbarId={"t2"} />
+
 									<ReactQuill
 										theme="snow"
 										value={userInfo.information}
 										onChange={oninformation}
 										placeholder={"Write something awesome..."}
-										modules={modules("t2")}
-										formats={formats}
 									/>
 								</div>
 								<br />

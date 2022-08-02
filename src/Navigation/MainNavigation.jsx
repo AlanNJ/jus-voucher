@@ -14,6 +14,8 @@ import DigitalMarketingPage from "../Components/DigitalMarketing/DigitalMarketin
 import Collaborating from "../Components/Collaborating/Collaborating";
 import Blog_category from "../Components/Blog_Category/Blog_category";
 import Login from "../Components/Login/Login";
+import SignUp from "../Components/Login/SignUp";
+import NewBlog from "../Components/Blogs/NewBlog";
 
 export const MainNavigation = () => {
 	return (
@@ -25,8 +27,9 @@ export const MainNavigation = () => {
 			<Route path="/health" element={<Health_Plus_Card />}></Route>
 			<Route path="/digital" element={<DigitalMarketingPage />}></Route>
 			<Route path="/collaborating" element={<Collaborating />}></Route>
-			<Route path="/blog_category" element={<Blog_category />}></Route>
+			<Route path="/blog_category/:id" element={<Blog_category />}></Route>
 			<Route path="/login" element={<Login />}></Route>
+			<Route path="/sign-up" element={<SignUp />}></Route>
 		</Routes>
 	);
 };

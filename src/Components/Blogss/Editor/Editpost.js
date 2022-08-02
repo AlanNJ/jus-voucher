@@ -35,6 +35,7 @@ function Editpost(props) {
 	const getInitialBlogs = () => {
 		axiosInstance.get();
 	};
+	console.log(userInfo);
 
 	const [isError, setError] = useState(null);
 	const PoemAddbooks = async (event) => {

@@ -12,6 +12,9 @@
     margin-top: 0.5rem;
     padding-right: 13rem;
 }
+.hamburger{
+    display: none;
+}
 .admin-layout .side-nav-container{
     grid-area: navigation;
     width: 100%;
@@ -94,6 +97,7 @@
     }
     .menu--active{
         transform: translateX(0);
+        z-index: 10000;
     }
     .admin-layout .admin-header-wrapper {
         padding: 0;
@@ -157,5 +161,11 @@
       }
       .hamburger--active .layer:nth-child(2){
         display: none;
+      }
+      .hamburger{
+        display: block;
+        position: absolute;
+        right:3%;
+        top:15%;
       }
 }
