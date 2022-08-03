@@ -9,19 +9,25 @@ export default function AddUserForm({ update }) {
 	const createUser = (event) => {
 		event.preventDefault();
 		if (formData.email && formData.password) {
-			axiosInstance
-				.post("/auth/add-user", formData)
-				.then((res) => {
-					console.log(res);
-					toast.success(res.data.message);
-					setTimeout(() => {
-						window.location.reload();
+			var validRegex =
+				/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+			if (formData.email.match(validRegex)) {
+				axiosInstance
+					.post("/auth/add-user", formData)
+					.then((res) => {
+						console.log(res);
+						toast.success(res.data.message);
+						setTimeout(() => {
+							window.location.reload();
+						});
+					})
+					.catch((err) => {
+						console.log(err);
+						toast.error(err.response.data.message);
 					});
-				})
-				.catch((err) => {
-					console.log(err);
-					toast.error(err.response.data.message);
-				});
+			} else {
+				toast.error("Please enter a valid email address");
+			}
 		} else {
 			toast.error("All fields are required");
 		}

@@ -21,6 +21,7 @@ export default function PrimaryTable({
 	backendURL,
 	testimonialUpdate,
 	updateAdmin,
+	update
 }) {
 	const [openModal, setOpenModal] = useState(false);
 	const [image, setImage] = useState("");

@@ -51,7 +51,7 @@ const Trend = () => {
 							{item.map((i) => (
 								<div className="img_card3">
 									<img
-										src={`http://localhost:5000/TrendingOffersImages/${i.img}`}
+										src={`https://jusvoucher.techjainsupport.co.in/TrendingOffersImages/${i.img}`}
 									/>{" "}
 								</div>
 							))}

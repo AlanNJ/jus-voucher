@@ -37,16 +37,16 @@ function Footer() {
 					<div className="f2">
 						<h4 className="footer_head">Quick Links</h4>
 						<div className="orange"></div>
-						<Link to="/">
+						<Link to="/" onClick={() => window.scrollTo(0, 0)}>
 							<li>Home</li>
 						</Link>
-						<Link to="/about">
+						<Link to="/about" onClick={() => window.scrollTo(0, 0)}>
 							<li>About Us</li>
 						</Link>
-						<Link to="/Blogs">
+						<Link to="/Blogs" onClick={() => window.scrollTo(0, 0)}>
 							<li>Blog</li>
 						</Link>
-						<Link to="contact">
+						<Link to="contact" onClick={() => window.scrollTo(0, 0)}>
 							<li>Contact Us</li>
 						</Link>
 					</div>

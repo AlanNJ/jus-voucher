@@ -26,20 +26,20 @@ const Navbar = () => {
 					onClick={() => setIsMobile(false)}
 				>
 					<ul>
-						<Link to="/">
+						<Link to="/" onClick={() => window.scrollTo(0, 0)}>
 							<li>Home</li>
 						</Link>
-						<Link to="/about">
+						<Link to="/about" onClick={() => window.scrollTo(0, 0)}>
 							<li>About Us </li>
 						</Link>
 						{/* <Link to="/" ><li>Testimonial</li></Link>  */}
-						<Link to="/blogs">
+						<Link to="/blogs" onClick={() => window.scrollTo(0, 0)}>
 							<li>Our Blogs</li>
 						</Link>
-						<Link to="/collaborating">
+						<Link to="/collaborating" onClick={() => window.scrollTo(0, 0)}>
 							<li>Vendors</li>
 						</Link>
-						<Link to="/contact">
+						<Link to="/contact" onClick={() => window.scrollTo(0, 0)}>
 							<li>Contact Us</li>
 						</Link>
 						{user ? (

@@ -51,7 +51,7 @@ export const Discount = () => {
 								{item.map((i) => (
 									<div className="img_card1">
 										<img
-											src={`http://localhost:5000/DiscountImages/${i.img}`}
+											src={`https://jusvoucher.techjainsupport.co.in/DiscountImages/${i.img}`}
 										/>{" "}
 									</div>
 								))}

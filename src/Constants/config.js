@@ -1,4 +1,9 @@
 export default {
-	baseURL: "http://localhost:5000/api",
-	backendURL: "http://localhost:5000",
+	baseURL: "https://jusvoucher.techjainsupport.co.in/api/",
+	backendURL: "https://jusvoucher.techjainsupport.co.in/",
 };
+
+/**export default {
+	baseURL: "https://jusvoucher.techjainsupport.co.in/api/",
+	backendURL: "https://jusvoucher.techjainsupport.co.in/",
+}; */

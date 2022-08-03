@@ -39,7 +39,7 @@ const Blogs = () => {
 								<Card>
 									<CardMedia
 										component="img"
-										image={`http://localhost:5000/BlogImages/${item.blog_image}`}
+										image={`https://jusvoucher.techjainsupport.co.in/BlogImages/${item.blog_image}`}
 										alt="green iguana"
 										height="460rem"
 									/>

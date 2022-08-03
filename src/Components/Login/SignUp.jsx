@@ -22,18 +22,24 @@ export const SignUp = () => {
 		if (email == "" || password == "") {
 			toast.error("Please fill all the fields");
 		} else {
-			axiosInstance
-				.post("auth/add-user", { email, password })
-				.then((res) => {
-					console.log(res.data);
-					toast.success("Account Created Successfully");
-					setTimeout(() => {
-						navigate("/login");
-					}, 1500);
-				})
-				.catch(() => {
-					toast.error("Email is already taken !");
-				});
+			var validRegex =
+				/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+			if (email.match(validRegex)) {
+				axiosInstance
+					.post("auth/add-user", { email, password })
+					.then((res) => {
+						console.log(res.data);
+						toast.success("Account Created Successfully");
+						setTimeout(() => {
+							navigate("/login");
+						}, 1500);
+					})
+					.catch(() => {
+						toast.error("Email is already taken !");
+					});
+			} else {
+				toast.error("Please enter a valid email address");
+			}
 		}
 	};
 	return (

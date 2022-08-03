@@ -40,16 +40,26 @@ export const Modal = ({ openModal, setOpenModal, type, img }) => {
 	);
 };
 const ModalType = ({ setOpenModal, openModal }) => {
-	const [email, setEmail] = useState("");
+	const [emailId, setEmail] = useState("");
 	const submitQuote = async () => {
-		if (!email) {
-			setOpenModal(!openModal);
+		if (!emailId) {
 			toast.error("Please provide an email !");
 		} else {
-			setOpenModal(!openModal);
-			axiosInstance.post("/auth/add-quote", email).then((res) => {
-				toast.success("You will get message from us soon !!");
-			});
+			const formData = new FormData();
+			formData.append("email", emailId);
+
+			const data = { email: emailId };
+			var validRegex =
+				/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+			if (emailId.match(validRegex)) {
+				setOpenModal(!openModal);
+
+				axiosInstance.post("/auth/add-quote", formData).then((res) => {
+					toast.success("You will get message from us soon !!");
+				});
+			} else {
+				toast.error("Please enter a valid email address");
+			}
 		}
 	};
 	return (

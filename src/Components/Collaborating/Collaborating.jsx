@@ -39,10 +39,16 @@ const Collaborating = () => {
 		if (!firstName || !email || !message || !phoneNo) {
 			toast.error("Please fill all the fields");
 		} else {
-			axiosInstance.post("/auth/send-message", data).then((res) => {
-				toast.success("Message Sent Successfully");
-				console.log(res.data);
-			});
+			var validRegex =
+				/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+			if (email.match(validRegex)) {
+				axiosInstance.post("/auth/send-message", data).then((res) => {
+					toast.success("Message Sent Successfully");
+					console.log(res.data);
+				});
+			} else {
+				toast.error("Email not valid");
+			}
 		}
 	};
 	const getDiscounts = () => {
@@ -257,7 +263,14 @@ export const Crousel1 = () => {
 		item.forEach((item) => {
 			array.push(
 				<div className="Testimonial3dCarousel-Slide">
-					{<img src={"http://localhost:5000/RainingImages/" + item.img} />}
+					{
+						<img
+							src={
+								"https://jusvoucher.techjainsupport.co.in/RainingImages/" +
+								item.img
+							}
+						/>
+					}
 				</div>
 			);
 		});
