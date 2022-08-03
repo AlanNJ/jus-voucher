@@ -22,6 +22,7 @@ import Add from "../Components/Blogss/Editor/Add";
 import Editpost from "../Components/Blogss/Editor/Editpost";
 import { useNavigate } from "react-router-dom";
 import Comments from "../Components/Blogss/Comments";
+import axios from "axios";
 
 let userViewHeaders = [
 	"SiNo",
@@ -31,11 +32,13 @@ let userViewHeaders = [
 	"Delete",
 	"Action",
 ];
+let quoteHeader = ["SiNo", "email"];
 
 export default function AdminNavigation({ setAdmin }) {
 	const [users, setUsers] = useState([]);
 	const navigate = useNavigate();
 	const location = useLocation();
+	const [quotes, setQuotes] = useState();
 	const [updateUser, setUpdateUser] = useState(false);
 	const updateRow = (id) => {
 		axiosInstance.put(`/auth/approve-admin/${id}`);
@@ -48,15 +51,20 @@ export default function AdminNavigation({ setAdmin }) {
 		} else {
 			setAdmin(false);
 		}
+		axiosInstance.get("/auth/get-all-quotes").then((res) => {
+			setQuotes(res.data.quotes);
+		});
 	}, [location]);
-	// useEffect(() => {
-	// 	let user = JSON.parse(localStorage.getItem("User"));
-	// 	if (user) {
-	// 		if (user.approved !== 1) {
-	// 			navigate("/");
-	// 		}
-	// 	}
-	// }, []);
+	useEffect(() => {
+		let user = JSON.parse(localStorage.getItem("User"));
+		if (user) {
+			if (user.approved == 0) {
+				navigate("/");
+			}
+		} else {
+			navigate("/");
+		}
+	}, []);
 
 	const deleteUser = (id, index) => {
 		let isConfirmed = window.confirm("Are you sure to delete the user?");
@@ -115,7 +123,24 @@ export default function AdminNavigation({ setAdmin }) {
 				</Route>
 				<Route path="manage-pages" element={<ManagePages />}>
 					<Route path="home/:section" element={<HomePageManager />} />
-					<Route path="about/:section" element={<WhyChooseUseManager />} />
+					<Route
+						path="quotes"
+						element={
+							<div style={{ display: "flex", flexDirection: "column" }}>
+								{updateUser && <AddUserForm update={update} />}
+								<>
+									{users[0] ? (
+										<PrimaryTable
+											tableHeader={quoteHeader}
+											tableBody={quotes}
+										/>
+									) : (
+										"No users found"
+									)}
+								</>
+							</div>
+						}
+					/>
 					<Route
 						path="special-offers/:section"
 						element={<SpecialOfferManager />}

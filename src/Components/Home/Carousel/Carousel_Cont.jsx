@@ -29,7 +29,9 @@ const Carousel_Cont = () => {
 				>
 					{bannerImage.map((item) => (
 						<div className="carou">
-							<img src={`http://localhost:5000/BannerImages/${item.img}`} />
+							<img
+								src={`https://jusvoucher.techjainsupport.co.in/BannerImages/${item.img}`}
+							/>
 						</div>
 					))}
 				</Carousel>

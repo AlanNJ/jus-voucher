@@ -215,11 +215,13 @@ export default function HomePageManager() {
 	const updateSection1 = async (id, index) => {
 		setUpdateId(id);
 		const data = await axios.get(
-			`http://localhost:5000/api/products/get-single-banner-item/${id}`
+			`https://jusvoucher.techjainsupport.co.in/api/products/get-single-banner-item/${id}`
 		);
 		console.log(data.data.item);
 		setFirstSection({ title: data.data.item.info });
-		setBackendURL(`http://localhost:5000/BannerImages/${data.data.item.img}`);
+		setBackendURL(
+			`https://jusvoucher.techjainsupport.co.in/BannerImages/${data.data.item.img}`
+		);
 
 		console.log(id);
 		return backendURL;
@@ -304,11 +306,13 @@ export default function HomePageManager() {
 	const updateSection2 = async (id, index) => {
 		setUpdateId(id);
 		const data = await axios.get(
-			`http://localhost:5000/api/products/get-single-discount-item/${id}`
+			`https://jusvoucher.techjainsupport.co.in/api/products/get-single-discount-item/${id}`
 		);
 		console.log(data.data);
 		setSecondSection({ title: data.data.info });
-		setBackendURL(`http://localhost:5000/DiscountImages/${data.data.img}`);
+		setBackendURL(
+			`https://jusvoucher.techjainsupport.co.in/DiscountImages/${data.data.img}`
+		);
 		setUpdateButton(true);
 		return backendURL;
 
@@ -395,12 +399,12 @@ export default function HomePageManager() {
 	const updateSection3 = async (id, index) => {
 		setUpdateId(id);
 		const data = await axios.get(
-			`http://localhost:5000/api/products/get-single-gift-voucher-item/${id}`
+			`https://jusvoucher.techjainsupport.co.in/api/products/get-single-gift-voucher-item/${id}`
 		);
 		console.log(data.data);
 		setThirdSection({ title: data.data.info });
 		setBackendURL(
-			`http://localhost:5000/FreeGiftVouchersImages/${data.data.img}`
+			`https://jusvoucher.techjainsupport.co.in/FreeGiftVouchersImages/${data.data.img}`
 		);
 		setUpdateButton(true);
 		return backendURL;
@@ -487,11 +491,13 @@ export default function HomePageManager() {
 		setUpdateButton(true);
 		setUpdateId(id);
 		const data = await axios.get(
-			`http://localhost:5000/api/products/get-single-our-client/${id}`
+			`https://jusvoucher.techjainsupport.co.in/api/products/get-single-our-client/${id}`
 		);
 		console.log(data.data);
 		setFourthSection({ name: data.data.name, role: data.data.role });
-		setBackendURL(`http://localhost:5000/OurClientsImages/${data.data.img}`);
+		setBackendURL(
+			`https://jusvoucher.techjainsupport.co.in/OurClientsImages/${data.data.img}`
+		);
 		return backendURL;
 	};
 	const finalUpdate4 = (e, string) => {
@@ -578,13 +584,13 @@ export default function HomePageManager() {
 		setUpdateId(id);
 		setUpdateButton(true);
 		const data = await axios.get(
-			`http://localhost:5000/api/products/get-single-trending-offer/${id}`
+			`https://jusvoucher.techjainsupport.co.in/api/products/get-single-trending-offer/${id}`
 		);
 
 		setFifthSection({ title: data.data.info });
 
 		setBackendURL(
-			`http://localhost:5000/TrendingOffersImages/${data.data.img}`
+			`https://jusvoucher.techjainsupport.co.in/TrendingOffersImages/${data.data.img}`
 		);
 		return backendURL;
 	};
@@ -676,7 +682,7 @@ export default function HomePageManager() {
 		setUpdateButton(true);
 		setUpdateId(id);
 		const data = await axios.get(
-			`http://localhost:5000/api/products/get-single-client-testimonial-items/${id}`
+			`https://jusvoucher.techjainsupport.co.in/api/products/get-single-client-testimonial-items/${id}`
 		);
 
 		setSixthSection({
@@ -688,7 +694,7 @@ export default function HomePageManager() {
 		});
 
 		setBackendURL(
-			`http://localhost:5000/ClientTestimonialImages/${data.data.img}`
+			`https://jusvoucher.techjainsupport.co.in/ClientTestimonialImages/${data.data.img}`
 		);
 		return backendURL;
 	};
@@ -775,12 +781,14 @@ export default function HomePageManager() {
 		setUpdateButton(true);
 		setUpdateId(id);
 		const data = await axios.get(
-			`http://localhost:5000/api/products/get-single-raining-items/${id}`
+			`https://jusvoucher.techjainsupport.co.in/api/products/get-single-raining-items/${id}`
 		);
 
 		setSeventhSection({ title: data.data.item.info });
 
-		setBackendURL(`http://localhost:5000/RainingImages/${data.data.img}`);
+		setBackendURL(
+			`https://jusvoucher.techjainsupport.co.in/RainingImages/${data.data.img}`
+		);
 		return backendURL;
 	};
 
@@ -866,7 +874,7 @@ export default function HomePageManager() {
 		setUpdateButton(true);
 		setUpdateId(id);
 		const data = await axios.get(
-			`http://localhost:5000/api/products/get-single-happyClients-items/${id}`
+			`https://jusvoucher.techjainsupport.co.in/api/products/get-single-happyClients-items/${id}`
 		);
 		console.log(data.data.item);
 
@@ -875,7 +883,9 @@ export default function HomePageManager() {
 			message: data.data.item.message,
 		});
 
-		setBackendURL(`http://localhost:5000/HappyClientsImages/${data.data.img}`);
+		setBackendURL(
+			`https://jusvoucher.techjainsupport.co.in/HappyClientsImages/${data.data.img}`
+		);
 		return backendURL;
 	};
 	console.log(firstSection);

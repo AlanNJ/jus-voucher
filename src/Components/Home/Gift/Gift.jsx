@@ -57,7 +57,7 @@ const Gift = () => {
 								{item.map((i) => (
 									<div className="img_card">
 										<img
-											src={`http://localhost:5000/FreeGiftVouchersImages/${i.img}`}
+											src={`https://jusvoucher.techjainsupport.co.in/FreeGiftVouchersImages/${i.img}`}
 										/>{" "}
 									</div>
 								))}

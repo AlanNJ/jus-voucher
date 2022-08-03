@@ -30,14 +30,13 @@ export default function Login() {
 					});
 			}
 
-			if (email == "admin" && password == "admin") {
-				let fis = JSON.parse(localStorage.getItem("User"));
-				console.log(fis.approved);
+			// if (email == "admin" && password == "admin") {
+			// 	let fis = JSON.parse(localStorage.getItem("User"));
 
-				if (fis.approved === 1) {
-					navigate("/admin-panel");
-				}
-			}
+			// 	if (fis.approved === 1) {
+			// 		navigate("/admin-panel");
+			// 	}
+			// }
 		}
 	};
 	return (

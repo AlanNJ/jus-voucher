@@ -23,9 +23,15 @@ const Contact = () => {
 		if (!firstName || !lastName || !email || !message || !phoneNo) {
 			toast.error("Please fill all the fields");
 		} else {
-			axiosInstance.post("/auth/send-message", data).then((res) => {
-				toast.success("Message Sent Successfully");
-			});
+			var validRegex =
+				/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+			if (email.match(validRegex)) {
+				axiosInstance.post("/auth/send-message", data).then((res) => {
+					toast.success("Message Sent Successfully");
+				});
+			} else {
+				toast.error("Email not Valid");
+			}
 		}
 	};
 

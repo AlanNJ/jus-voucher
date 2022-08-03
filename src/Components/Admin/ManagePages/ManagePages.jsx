@@ -18,7 +18,7 @@ let sectionCount = {
 		],
 	},
 	AboutUs: {
-		title: "About-Us",
+		title: "Quotes",
 		count: 3,
 	},
 	OurBlogs: {
@@ -60,12 +60,12 @@ export default function ManagePages() {
 					Home
 				</NavLink>
 				<NavLink
-					to="/admin-panel/manage-pages/about/1"
+					to="/admin-panel/manage-pages/quotes"
 					className={({ isActive }) =>
 						isActive ? "btn-page btn-page--active" : "btn-page"
 					}
 				>
-					About Us
+					Quotes
 				</NavLink>
 				<NavLink
 					to="/admin-panel/blogs"

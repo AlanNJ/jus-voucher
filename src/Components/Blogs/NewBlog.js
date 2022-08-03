@@ -23,7 +23,10 @@ export const NewBlog = ({ blog }) => {
 			<h1>{blog && blog.title}</h1>
 			<p>
 				<img
-					src={blog && `http://localhost:5000/BlogImages/${blog.blog_image}`}
+					src={
+						blog &&
+						`https://jusvoucher.techjainsupport.co.in/BlogImages/${blog.blog_image}`
+					}
 				/>
 				{strippedHtml1 && strippedHtml1}
 				Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in
